@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum EnemyType
 {
-    Red,
-    Blue
+    Astronaut,
+    Drone
 }; 
 

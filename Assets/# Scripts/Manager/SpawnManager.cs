@@ -9,10 +9,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] Transform[] spawnPoint;
 
     [Tooltip("Spawn할 Enemy에 대한 Type별 속성값 지정")]
-    [SerializeField] SpawnData[] spawnData;
+    [SerializeField] SpawnData spawnData;
 
     private float timer;
-    private int level = 0;
 
     private void Awake()
     {
@@ -21,8 +20,7 @@ public class SpawnManager : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-        //level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), spawnData.Length - 1); //level이 spawnData의 index를 넘어가지 않도록 설정
-        if (timer > spawnData[level].spawnTime)
+        if (timer > spawnData.spawnTime)
         {
             timer = 0;
             Spawn();
@@ -32,11 +30,18 @@ public class SpawnManager : MonoBehaviour
 
     void Spawn()
     {
-        GameObject enemy = GameManager.instance.poolManager.GetMonster(Random.Range(0, level + 1));
-        //Debug.Log(enemy.name);
-        enemy.GetComponent<EnemyController>().navMeshAgent.Warp(spawnPoint[Random.Range(1, spawnPoint.Length)].position);
-        //enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
-        //enemy.GetComponent<Enemy>().Init(spawnData[level]);
+        GameObject enemy = null;
+        switch (spawnData.enemyType)
+        {
+            case EnemyType.Astronaut:
+                enemy = GameManager.instance.poolManager.GetMonster(0);
+                enemy.GetComponent<EnemyController>().navMeshAgent.Warp(spawnPoint[Random.Range(1, spawnPoint.Length)].position);
+                break;
+            case EnemyType.Drone:
+                enemy = GameManager.instance.poolManager.GetMonster(1);
+                enemy.GetComponent<DroneController>().navMeshAgent.Warp(spawnPoint[Random.Range(1, spawnPoint.Length)].position);
+                break;
+        }
     }
 }
 

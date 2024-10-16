@@ -25,11 +25,9 @@ public class EnemyController : MonoBehaviour
     [Tooltip("플레이어 이동 속도")]
     public float moveSpeed;
 
-    [Header("# Effect")]
-    [Tooltip("Red Bullet 맞았을 때의 Effect")]
-    public GameObject redBulletVFX;
-    [Tooltip("Bule Bullet 맞았을 때의 Effect")]
-    public GameObject buleBulletVFX;
+    [Header("# Score")]
+    [Tooltip("잡을 시 받을 점수")]
+    public int score;
 
     int bulletIndex;
     NavMeshHit hit;
@@ -143,13 +141,16 @@ public class EnemyController : MonoBehaviour
 
     public void Dead(int deadType)
     {
+        GameManager.instance.scoreCounter += score;
+
+        Vector3 effectPos = new(transform.position.x, transform.position.y + 5f, transform.position.z);
         switch (deadType)
         {
             case 0:
-                Instantiate(redBulletVFX, transform.position, transform.rotation);
+                Instantiate(GameManager.instance.redBulletEffect, effectPos, transform.rotation);
                 break;
             case 1:
-                Instantiate(buleBulletVFX, transform.position, transform.rotation);
+                Instantiate(GameManager.instance.blueBulletEffect, effectPos, transform.rotation);
                 break;
         }
 
