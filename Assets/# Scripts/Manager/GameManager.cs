@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject blueBulletEffect;
 
     private float gameCounter; //흘러간 시간을 계산하기위한 변수
+    private bool resultFlag;
     [HideInInspector] public int scoreCounter;
 
     private void Awake()
@@ -29,13 +30,19 @@ public class GameManager : MonoBehaviour
     {
         scoreCounter = 0;
         gameCounter = 0;
+
+        resultFlag = false;
     }
 
     private void Update()
     {
-        gameTimer -= Time.deltaTime;
+        if (resultFlag)
+            return;
+
         if(gameTimer <= 0)
-        {
+        {   
+            resultFlag = true;
+            gameTimer = 0;
             if(scoreCounter >= scoreForWin)
             {
                 Debug.Log("Win");
@@ -46,6 +53,10 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Lose");
                 //Lose Scene으로 넘어가는 로직
             }
+        }
+        else
+        {
+            gameTimer -= Time.deltaTime;
         }
     }
 }
