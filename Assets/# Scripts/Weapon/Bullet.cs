@@ -18,23 +18,20 @@ public class Bullet : MonoBehaviour
     [Tooltip("총알 나가는 위치")]
     [SerializeField] Transform firePosition;
 
-    [Tooltip("총알 나가는 위치 정보")]
-    [SerializeField] FirePos firePos;
 
     Rigidbody rigidBody;
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        if (firePos == FirePos.Right)
-            firePosition = GameObject.FindWithTag("RightPos").transform;
-        if (firePos == FirePos.Left)
-            firePosition = GameObject.FindWithTag("LeftPos").transform;
+        firePosition = GameObject.FindWithTag("FirePos").GetComponent<Transform>();
     }
 
     private void OnEnable()
     {
-        rigidBody.velocity = firePosition.forward * 50;
+        firePosition = GameObject.FindWithTag("FirePos").GetComponent<Transform>();
+
+        rigidBody.velocity = firePosition.forward * 300;
 
         this.transform.position = firePosition.transform.position;
         this.transform.rotation = firePosition.transform.rotation;
@@ -56,11 +53,14 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Ground"))
         {
+            Debug.Log("Bullet 충돌");
+           
+
             if (hit != null)
             {
-                Vector3 hitPosition = new(other.transform.position.x, 1.0f, other.transform.position.z);
+                Vector3 hitPosition = this.transform.position;
                 var hitInstance = Instantiate(hit, hitPosition, Quaternion.identity);
 
                 var hitPs = hitInstance.GetComponent<ParticleSystem>();
@@ -74,6 +74,8 @@ public class Bullet : MonoBehaviour
                     Destroy(hitInstance, hitPsParts.main.duration);
                 }
             }
+            if (this.gameObject.activeSelf)
+            { this.gameObject.SetActive(false); }
         }
     }
 }

@@ -76,7 +76,15 @@ public class PlayerController : MonoBehaviour
     }
     public void RotateToMousePosition()
     {
-        transform.Rotate(0f, Input.GetAxis("Mouse X") * rotationSpeed, 0f, Space.World);
+        // X축 회전은 Y축의 마우스 이동에 따라, Y축 회전은 X축 마우스 이동에 따라 적용
+        float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
+        float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed;
+
+        // Y축 회전 (마우스 좌우 이동)
+        transform.Rotate(0f, mouseX, 0f, Space.World);
+
+        // X축 회전 (마우스 상하 이동)
+        transform.Rotate(-mouseY, 0f, 0f);
     }
 
     public void OnLeftFire()

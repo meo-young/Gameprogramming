@@ -25,6 +25,12 @@ public class EnemyController : MonoBehaviour
     [Tooltip("플레이어 이동 속도")]
     public float moveSpeed;
 
+    [Header("# Effect")]
+    [Tooltip("Red Bullet 맞았을 때의 Effect")]
+    public GameObject redBulletVFX;
+    [Tooltip("Bule Bullet 맞았을 때의 Effect")]
+    public GameObject buleBulletVFX;
+
     int bulletIndex;
     NavMeshHit hit;
 
@@ -90,6 +96,26 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if(other.CompareTag("Red"))
+        {
+            if (other.gameObject.activeSelf)
+                other.gameObject.SetActive(false);
+            //0 : Red Bullet, 1 : Bule Bullet
+            Dead(deadType: 0);
+        }
+        else if(other.CompareTag("Blue"))
+        {
+            if (other.gameObject.activeSelf)
+                other.gameObject.SetActive(false);
+            Dead(deadType: 1);
+        }
+    }
+
+
+
     void AdjustPositionForNavmesh()
     {
         if (NavMesh.SamplePosition(this.transform.position, out hit, 1.0f, NavMesh.AllAreas))
@@ -115,4 +141,21 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void Dead(int deadType)
+    {
+        switch (deadType)
+        {
+            case 0:
+                Instantiate(redBulletVFX, transform.position, transform.rotation);
+                break;
+            case 1:
+                Instantiate(buleBulletVFX, transform.position, transform.rotation);
+                break;
+        }
+
+        if(this.gameObject.activeSelf)
+        {
+            this .gameObject.SetActive(false);
+        }
+    }
 }

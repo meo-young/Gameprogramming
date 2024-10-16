@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     [Header("# Manager")]
     public PoolManager poolManager;
 
-    [Header("# Player")]
-    public PlayerController player;
 
     private void Awake()
     {

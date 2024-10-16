@@ -209,11 +209,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 6800320888575328244}
   navMeshAgent: {fileID: 7492454321096760070}
-  interactiveEffect: {fileID: 0}
   target: {fileID: 0}
   chasingTimer: 3
   idleTimer: 1
   moveSpeed: 20
+  redBulletVFX: {fileID: 1828176872806910, guid: 2f3cb5d533be4a340bc8944d6ba07e99,
+    type: 3}
+  buleBulletVFX: {fileID: 6675302182551818641, guid: 77cfb0b04411f0e4ba2da1a9e2dd1ed8,
+    type: 3}
 --- !u!1 &690893350609311227
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,15 @@ TagManager:
   - CinemachineTarget
   - RightPos
   - LeftPos
+  - FirePos
+  - Weapon
+  - SecondCamera
+  - BulletSpawn
+  - LevelPart
+  - Dummie
+  - Ground
+  - Blue
+  - Red
   layers:
   - Default
   - TransparentFX
@@ -17,8 +26,8 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - 
+  - Weapon
+  - Ground
   - 
   - 
   - 
