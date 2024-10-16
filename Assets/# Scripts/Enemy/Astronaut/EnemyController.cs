@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
@@ -103,12 +104,16 @@ public class EnemyController : MonoBehaviour
                 other.gameObject.SetActive(false);
             //0 : Red Bullet, 1 : Bule Bullet
             Dead(deadType: 0);
+            ShowBulletEffect(deadType: 0);
+
         }
         else if(other.CompareTag("Blue"))
         {
             if (other.gameObject.activeSelf)
                 other.gameObject.SetActive(false);
-            Dead(deadType: 1);
+            //Dead(deadType: 1);
+            ShowBulletEffect(deadType : 1);
+
         }
     }
 
@@ -143,6 +148,14 @@ public class EnemyController : MonoBehaviour
     {
         GameManager.instance.scoreCounter += score;
 
+        if(this.gameObject.activeSelf)
+        {
+            this .gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowBulletEffect(int deadType)
+    {
         Vector3 effectPos = new(transform.position.x, transform.position.y + 5f, transform.position.z);
         switch (deadType)
         {
@@ -152,11 +165,6 @@ public class EnemyController : MonoBehaviour
             case 1:
                 Instantiate(GameManager.instance.blueBulletEffect, effectPos, transform.rotation);
                 break;
-        }
-
-        if(this.gameObject.activeSelf)
-        {
-            this .gameObject.SetActive(false);
         }
     }
 }

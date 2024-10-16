@@ -55,13 +55,17 @@ public class DroneController : MonoBehaviour
             if (other.gameObject.activeSelf)
                 other.gameObject.SetActive(false);
             //0 : Red Bullet, 1 : Bule Bullet
-            Dead(deadType: 0);
+           // Dead(deadType: 0);
+            ShowBulletEffect(deadType: 0);
+
         }
         else if (other.CompareTag("Blue"))
         {
             if (other.gameObject.activeSelf)
                 other.gameObject.SetActive(false);
             Dead(deadType: 1);
+            ShowBulletEffect(deadType: 1);
+
         }
     }
 
@@ -86,6 +90,14 @@ public class DroneController : MonoBehaviour
         GameManager.instance.scoreCounter += score;
 
 
+        if (this.gameObject.activeSelf)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowBulletEffect(int deadType)
+    {
         switch (deadType)
         {
             case 0:
@@ -94,11 +106,6 @@ public class DroneController : MonoBehaviour
             case 1:
                 Instantiate(GameManager.instance.blueBulletEffect, transform.position, transform.rotation);
                 break;
-        }
-
-        if (this.gameObject.activeSelf)
-        {
-            this.gameObject.SetActive(false);
         }
     }
 }
