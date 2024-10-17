@@ -8,5 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/# Scenes/Konkuk.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/# Scenes/Lose.unity
+    guid: a780897aced377a488531bc4b6d3fa65
+  - enabled: 1
+    path: Assets/# Scenes/Win.unity
+    guid: f37791335e918fc46b27bdf093053475
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

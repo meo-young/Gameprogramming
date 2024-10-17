@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -51,12 +52,12 @@ public class GameManager : MonoBehaviour
             if(scoreCounter >= scoreForWin)
             {
                 Debug.Log("Win");
-                //Win Scene으로 넘어가는 로직
+                SceneManager.LoadScene("Win");
             }
             else
             {
                 Debug.Log("Lose");
-                //Lose Scene으로 넘어가는 로직
+                SceneManager.LoadScene("Lose");
             }
         }
         else
