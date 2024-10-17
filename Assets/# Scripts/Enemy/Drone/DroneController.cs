@@ -56,7 +56,7 @@ public class DroneController : MonoBehaviour
                 other.gameObject.SetActive(false);
             //0 : Red Bullet, 1 : Bule Bullet
            // Dead(deadType: 0);
-            ShowBulletEffect(deadType: 0);
+            //ShowBulletEffect(deadType: 0);
 
         }
         else if (other.CompareTag("Blue"))
@@ -64,7 +64,7 @@ public class DroneController : MonoBehaviour
             if (other.gameObject.activeSelf)
                 other.gameObject.SetActive(false);
             Dead(deadType: 1);
-            ShowBulletEffect(deadType: 1);
+            //ShowBulletEffect(deadType: 1);
 
         }
     }

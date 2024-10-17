@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4709227338271210}
   - component: {fileID: 198093601366079736}
   - component: {fileID: 199263659433773832}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SubSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4858,7 +4858,7 @@ GameObject:
   - component: {fileID: 5389157048694834376}
   - component: {fileID: 4524551724965751590}
   - component: {fileID: 1401823369977309137}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bule Bullet
   m_TagString: Blue
   m_Icon: {fileID: 0}
@@ -9765,6 +9765,7 @@ MonoBehaviour:
   flash: {fileID: 1960835308829046, guid: adca1c5f787b050449984aedac0cbdc5, type: 3}
   hit: {fileID: 1998750652454270, guid: 8a1ac1dbe39224143972fa1a908b0abf, type: 3}
   firePosition: {fileID: 0}
+  bulletInfo: 1
 --- !u!54 &4524551724965751590
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9806,12 +9807,12 @@ SphereCollider:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 1
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.05
+  m_Radius: 0.08
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1509662783125336
 GameObject:
@@ -9824,7 +9825,7 @@ GameObject:
   - component: {fileID: 4892294182177612}
   - component: {fileID: 198876463404640818}
   - component: {fileID: 199238353495653050}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SubSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}

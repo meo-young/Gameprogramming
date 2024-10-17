@@ -18,6 +18,9 @@ public class Bullet : MonoBehaviour
     [Tooltip("총알 나가는 위치")]
     [SerializeField] Transform firePosition;
 
+    [Tooltip("어떤 총알인지 판단하기위한 변수")]
+    [SerializeField] int bulletInfo;
+
 
     Rigidbody rigidBody;
 
@@ -53,29 +56,34 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("Ground"))
+        Debug.Log(other.gameObject);
+        switch(bulletInfo)
         {
-            Debug.Log("Bullet 충돌");
-           
-
-            if (hit != null)
-            {
-                Vector3 hitPosition = this.transform.position;
-                var hitInstance = Instantiate(hit, hitPosition, Quaternion.identity);
-
-                var hitPs = hitInstance.GetComponent<ParticleSystem>();
-                if (hitPs != null)
-                {
-                    Destroy(hitInstance, hitPs.main.duration);
-                }
-                else
-                {
-                    var hitPsParts = hitInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
-                    Destroy(hitInstance, hitPsParts.main.duration);
-                }
-            }
-            if (this.gameObject.activeSelf)
-            { this.gameObject.SetActive(false); }
+            case 0:
+                Instantiate(GameManager.instance.redBulletEffect, this.transform.position, transform.rotation);
+                break;
+            case 1:
+                Instantiate(GameManager.instance.blueBulletEffect, this.transform.position, transform.rotation);
+                break;
         }
+        if (hit != null)
+        {
+            Vector3 hitPosition = this.transform.position;
+            var hitInstance = Instantiate(hit, hitPosition, Quaternion.identity);
+
+            var hitPs = hitInstance.GetComponent<ParticleSystem>();
+            if (hitPs != null)
+            {
+                Destroy(hitInstance, hitPs.main.duration);
+            }
+            else
+            {
+                var hitPsParts = hitInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
+                Destroy(hitInstance, hitPsParts.main.duration);
+            }
+        }
+        if (this.gameObject.activeSelf)
+        { this.gameObject.SetActive(false); }
+
     }
 }

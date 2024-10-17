@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4032396095020486}
   - component: {fileID: 198141485587256510}
   - component: {fileID: 199229295184012456}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4858,7 +4858,7 @@ GameObject:
   - component: {fileID: 1157109935860271482}
   - component: {fileID: 1835571920673756598}
   - component: {fileID: 4215278080005381552}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Red Bullet
   m_TagString: Red
   m_Icon: {fileID: 0}
@@ -9832,6 +9832,7 @@ MonoBehaviour:
   flash: {fileID: 1766868900565162, guid: f82a1a892a042c1438f8f4704a37e11b, type: 3}
   hit: {fileID: 1220213892471706, guid: 800cddb992d3f5e4eb2348b90447f4a7, type: 3}
   firePosition: {fileID: 0}
+  bulletInfo: 0
 --- !u!1 &1620116646029536
 GameObject:
   m_ObjectHideFlags: 0
@@ -9843,7 +9844,7 @@ GameObject:
   - component: {fileID: 4188172798495772}
   - component: {fileID: 198856659907629688}
   - component: {fileID: 199500892221993244}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14707,7 +14708,7 @@ GameObject:
   - component: {fileID: 4715873012433674}
   - component: {fileID: 198147676333123090}
   - component: {fileID: 199657416626372474}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

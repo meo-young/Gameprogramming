@@ -19,6 +19,9 @@ public class SpawnManager : MonoBehaviour
     }
     private void Update()
     {
+        if (!GameManager.instance.gameStartFlag)
+            return;
+
         timer += Time.deltaTime;
         if (timer > spawnData.spawnTime)
         {

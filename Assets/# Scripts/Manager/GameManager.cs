@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private float gameCounter; //흘러간 시간을 계산하기위한 변수
     private bool resultFlag;
     [HideInInspector] public int scoreCounter;
+    [HideInInspector] public bool gameStartFlag;
 
     private void Awake()
     {
@@ -32,11 +33,15 @@ public class GameManager : MonoBehaviour
         gameCounter = 0;
 
         resultFlag = false;
+        gameStartFlag = false;
     }
 
     private void Update()
     {
         if (resultFlag)
+            return;
+
+        if (!gameStartFlag)
             return;
 
         if(gameTimer <= 0)
