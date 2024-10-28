@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     public GameObject redBulletEffect;
     public GameObject blueBulletEffect;
 
-    private float gameCounter; //흘러간 시간을 계산하기위한 변수
     private bool resultFlag;
     [HideInInspector] public int scoreCounter;
     [HideInInspector] public bool gameStartFlag;
@@ -31,8 +30,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         scoreCounter = 0;
-        gameCounter = 0;
-
         resultFlag = false;
         gameStartFlag = false;
     }

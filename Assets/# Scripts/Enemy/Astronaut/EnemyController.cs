@@ -21,6 +21,8 @@ public class EnemyController : MonoBehaviour
     public float chasingTimer = 5f;
     [Tooltip("쉬는 시간 간격")]
     public float idleTimer = 2f;
+    [SerializeField] public GameObject explosionEffect;
+    private float explosionCounter = 2;
 
     [Header("# Movement")]
     [Tooltip("플레이어 이동 속도")]
@@ -77,6 +79,29 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         UpdateState();
+
+
+        navMeshAgent.SetDestination(target.position);
+
+        if(navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance+2)
+        {
+            navMeshAgent.isStopped = true;
+            explosionCounter -= Time.deltaTime;
+            if(explosionCounter < 0)
+            {
+                explosionCounter = 2;
+                Instantiate(explosionEffect, this.transform.position, Quaternion.identity);
+                GameManager.instance.scoreCounter -= 10;
+                this.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            navMeshAgent.isStopped=false;
+            explosionCounter = 2;
+        }
+
+
     }
 
     public void ChangeState(IEnemyState enemyState)
@@ -121,17 +146,6 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log(gameObject.name);
         ChangeState(_idleState);
-        StartCoroutine(SetActiveFalseSelf());
-    }
-    IEnumerator SetActiveFalseSelf()
-    {
-        yield return new WaitForSeconds(5.0f);
-
-        if(this.gameObject.activeSelf)
-        {
-            //yield return new WaitForSeconds(2.0f);
-            this.gameObject.SetActive(false);
-        }
     }
 
     public void Dead(int deadType)

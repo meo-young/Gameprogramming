@@ -12,6 +12,10 @@ public class DroneController : MonoBehaviour
     [Tooltip("드론 회전속도")]
     [SerializeField] float rotationSpeed = 10f;
 
+    [SerializeField] Transform firePos;
+    [SerializeField] GameObject bullet;
+    private float shootTimer = 3;
+
     [Header("# Component")]
     [Tooltip("드론 AI 구현을 위한 NavMeshAgent")]
     public NavMeshAgent navMeshAgent;
@@ -45,6 +49,24 @@ public class DroneController : MonoBehaviour
     {
         RotationToTarget();
         navMeshAgent.SetDestination(target.position);
+       
+
+
+        if(navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
+        {
+            navMeshAgent.isStopped = true;
+            Quaternion rotation = this.transform.rotation;
+            shootTimer -= Time.deltaTime;
+            if(shootTimer <0)
+            {
+                Instantiate(bullet, firePos.position, rotation);
+                shootTimer = 3;
+            }
+        }
+        else
+        {
+            navMeshAgent.isStopped = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
