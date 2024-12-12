@@ -23,6 +23,8 @@ public class EnemyMoveState : MonoBehaviour, IEnemyState
 
         if (_navMeshAgent.isOnNavMesh)
             MoveToRandomPoint();
+
+        _enemyController.anim.SetBool("Walk", true);
     }
     public void OnStateUpdate()
     {

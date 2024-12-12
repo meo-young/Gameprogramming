@@ -111,7 +111,7 @@ Animator:
   m_GameObject: {fileID: 567100319371127621}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 02dd6406ed1ebc248b2fafd0485e0de9, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9966b5485de603b49810d1e020f35606, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -209,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 6800320888575328244}
   navMeshAgent: {fileID: 7492454321096760070}
+  anim: {fileID: 1746510126843818933}
   target: {fileID: 0}
   chasingTimer: 3
   idleTimer: 1

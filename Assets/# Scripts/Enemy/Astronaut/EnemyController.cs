@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
     public Rigidbody rigidBody;
     [Tooltip("AI 적용을 위한 NavMeshAgent 컴포넌트")]
     public NavMeshAgent navMeshAgent;
+    public Animator anim;
 
     [Header("# Target")]
     [Tooltip("추격할 상대")]
@@ -85,6 +86,7 @@ public class EnemyController : MonoBehaviour
 
         if(navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance+2)
         {
+            anim.SetBool("Walk", false);
             navMeshAgent.isStopped = true;
             explosionCounter -= Time.deltaTime;
             if(explosionCounter < 0)
@@ -97,6 +99,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            anim.SetBool("Walk", true);
             navMeshAgent.isStopped=false;
             explosionCounter = 2;
         }
